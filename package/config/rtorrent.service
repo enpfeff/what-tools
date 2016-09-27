@@ -1,0 +1,17 @@
+[Unit]
+Description=rTorrent
+After=network.target
+
+[Service]
+Type=forking
+User=wtadmin
+Group=media
+KillMode=none
+ExecStartPre=-rm /var/www/session/rtorrent.lock
+ExecStart=/usr/bin/screen -d -m -fa -S rtorrent /usr/local/bin/rtorrent
+ExecStop=/usr/bin/killall -w -s 2 /usr/local/bin/rtorrent
+
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
