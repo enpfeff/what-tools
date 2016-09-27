@@ -10,4 +10,9 @@ function canWeRun() {
 }
 
 canWeRun
+
+# creates users and groups
 ./lib/identity.sh
+
+# kills are services that are involved with the install (e.g.) rtorrent
+./lib/kill.sh
