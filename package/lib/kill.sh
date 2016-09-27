@@ -11,7 +11,7 @@ function kill() {
     fi
 
 }
-fucntion killAll() {
+function killAll() {
     kill rtorrent
 }
 
