@@ -20,7 +20,7 @@ function createUser() {
 
     if [ $result -ne 0 ]; then
         echo -e "Creating user ${user}\n"
-        useradd -p ${pass} ${user} -G ${group}
+        useradd -p ${pass} -m ${user} -G ${group}
     fi
 }
 
