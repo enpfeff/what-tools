@@ -16,3 +16,6 @@ canWeRun
 
 # kills are services that are involved with the install (e.g.) rtorrent
 ./lib/kill.sh
+
+# end of install bring everything up
+./lib/start.sh
