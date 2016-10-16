@@ -1,0 +1,12 @@
+{
+  "name": "what-tools",
+  "version": "0.0.1",
+  "scripts": {
+    "install": "npm-run-all -p install:{server,ui}",
+    "install:server": "cd ./server && npm i",
+    "install:ui": "cd ./ui && npm i"
+  },
+  "dependencies": {
+    "npm-run-all": "^3.1.1"
+  }
+}
