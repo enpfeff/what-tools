@@ -4,7 +4,10 @@
   "scripts": {
     "install": "npm-run-all -p install:{server,ui}",
     "install:server": "cd ./server && npm i",
-    "install:ui": "cd ./ui && npm i"
+    "install:ui": "cd ./ui && npm i",
+    "clean": "npm-run-all clean:{server,ui} && rm -rf ./node_modules",
+    "clean:server": "cd ./server && rm -rf node_modules",
+    "clean:ui": "cd ./ui && rm -rf node_modules"
   },
   "dependencies": {
     "npm-run-all": "^3.1.1"
