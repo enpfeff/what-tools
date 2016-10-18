@@ -18,10 +18,13 @@ function add(...optionsArgs) {
 function init() {
     // inject known files
     const CONSTANTS = [
-        require('../../config/express.constants')
+        require('../../config/express.constants'),
+        require('../mongoose/mongo.constants')
     ];
 
     add(...CONSTANTS);
+
+    return constants;
 }
 
 const isDevelopment = () => constants.NODE_ENV === 'development';

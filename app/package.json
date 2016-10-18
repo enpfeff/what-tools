@@ -7,7 +7,8 @@
     "install:ui": "cd ./ui && npm i",
     "clean": "npm-run-all clean:{server,ui} && rm -rf ./node_modules",
     "clean:server": "cd ./server && rm -rf node_modules",
-    "clean:ui": "cd ./ui && rm -rf node_modules"
+    "clean:ui": "cd ./ui && rm -rf node_modules",
+    "bootstrap": "CLI=true node --harmony ./server/scripts/bootstrap.js"
   },
   "dependencies": {
     "npm-run-all": "^3.1.1"

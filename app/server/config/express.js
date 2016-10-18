@@ -21,14 +21,14 @@ function init() {
 
     // determine which state to load the ipm-bind-service in
     const NODE_ENV = determineNodeEnv();
-    constantService.init();
+    const C = constantService.init();
     constantService.add({NODE_ENV});
 
     app.use(logger('dev'));
     app.use(bodyParser.json());
 
     // things that apply to all routes
-    if (constantService.COMPRESSION_ENABLED) app.use(compression());
+    if (C.COMPRESSION_ENABLED) app.use(compression());
     app.use(allowCrossDomain);
     app.use(noCache);
 
