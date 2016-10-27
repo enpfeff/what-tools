@@ -5,3 +5,8 @@
  * @copyright Copyright (c) 2016 NETSCOUT
  */
 "use strict";
+
+const User = require('./user.model');
+const crudRoutes = require('../crud/crud.routes');
+
+module.exports = crudRoutes(User);

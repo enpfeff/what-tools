@@ -25,6 +25,7 @@ function init() {
     constantService.add({NODE_ENV});
 
     app.use(logger('dev'));
+    app.use(bodyParser.urlencoded({ extended: true }));
     app.use(bodyParser.json());
 
     // things that apply to all routes
