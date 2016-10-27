@@ -3,8 +3,6 @@
  * @module Log
  * @memberof Utils
  * @since 2/12/16
- * @author Ross Nordstrom <ross.nordstrom@flukenetworks.com>/**
- * @copyright Copyright (c) 2016 NETSCOUT
  */
 
 'use strict';

@@ -1,7 +1,6 @@
 /**
  * @module Index
  * @author Ian Pfeffer
- * @copyright Copyright (c) 2013-2016 NETSCOUT
  */
 
 'use strict';

@@ -2,7 +2,6 @@
  * @module what-tools
  * @since 10/27/16
  * @author Ian Pfeffer
- * @copyright Copyright (c) 2016 NETSCOUT
  */
 "use strict";
 const HttpError = require('../httpErrors/httpErrors');
