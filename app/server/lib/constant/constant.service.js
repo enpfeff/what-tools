@@ -18,7 +18,9 @@ function init() {
     // inject known files
     const CONSTANTS = [
         require('../../config/express.constants'),
-        require('../mongoose/mongo.constants')
+        require('../mongoose/mongo.constants'),
+        require('../authentication/authentication.constants'),
+        require('../redis/redis.constants')
     ];
 
     add(...CONSTANTS);

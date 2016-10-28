@@ -4,3 +4,11 @@
  * @author Ian Pfeffer
  */
 "use strict";
+const Router = require('express-promise-router');
+const authController = require('./authentication.controller');
+
+let router = Router();
+router.post('/login', authController.login);
+router.post('/logout', authController.logout);
+
+module.exports = router;

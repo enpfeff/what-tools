@@ -44,8 +44,6 @@ function schemaComparePassword(canidate) {
     const user = this;
 
     return comparePassword(canidate, user.password)
-        .catch(bcrypt.MISMATCH_ERROR, invalidPassword)
-        .catch(log.error);
 }
 
 /**
