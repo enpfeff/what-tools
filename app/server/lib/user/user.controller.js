@@ -60,9 +60,21 @@ function invalidPassword(val) {
     log.error(val)
 }
 
+/**
+ * Middleware function for toJson
+ * @returns {*}
+ */
+function removePassword() {
+    let user = this.toObject();
+    delete user.password;
+
+    return user;
+}
+
 module.exports = {
     schemaHashPassword,
     hashPassword,
     comparePassword,
-    schemaComparePassword
+    schemaComparePassword,
+    removePassword
 };

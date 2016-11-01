@@ -42,7 +42,7 @@ function createJwt(claims, experiation) {
 
     const baseJwt = {
         exp: getExpiration(experiation),
-        iat: moment().valueOf(),
+        iat: moment().unix().toString(),
         jti: uuid.v4()
     };
 

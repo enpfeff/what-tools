@@ -32,22 +32,9 @@ function login(req, res) {
                 .then(createClaims)
                 .then(jwtService.createJwt)
                 .then((jwt) => createRes(user, jwt))
-                .then(removeRevoke)
                 .then((response) => res.json(response))
         })
         .catch((err) => HttpErrors.HttpErrorHandler(err, req, res));
-}
-
-function removeRevoke(response) {
-    const id = response.user._id;
-
-    return redis().then(db => {
-        return db.hgetall(REDIS_REVOKE_KEY)
-            .then(hash => {
-                if(_.isNull(hash) || _.isUndefined(hash[id])) return;
-                return db.hdel(REDIS_REVOKE_KEY, id.toString());
-            });
-    }).then(() => response);
 }
 
 /**

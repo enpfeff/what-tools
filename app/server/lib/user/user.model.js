@@ -14,5 +14,6 @@ const COLLECTION_NAME = 'User';
 
 usersSchema.pre('save', controller.schemaHashPassword);
 usersSchema.methods.comparePassword = controller.schemaComparePassword;
+usersSchema.methods.toJSON = controller.removePassword;
 
 module.exports = mongoose.models[MODEL_NAME] || mongoose.model(MODEL_NAME, usersSchema, COLLECTION_NAME);

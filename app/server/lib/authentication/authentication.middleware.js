@@ -27,14 +27,16 @@ function authenticate(req, res, next) {
 function validateJwt(req) {
     return getAuthHeader(req)
         .then(jwtService.decodeToken)
-        .then(getUserFromJwt)
-        .then(checkRevoke)
+        .then((jwt) => {
+            return getUserFromJwt(jwt)
+                .then((user) => checkRevoke(user, jwt))
+        })
         .catch(() => {
             throw new HttpErrors.HttpUnauthorizedError();
         });
 }
 
-function checkRevoke(user) {
+function checkRevoke(user, jwt) {
     if (!user) throw new HttpErrors.HttpBadRequestError("no user in the db for given id");
     return redis().then(db => {
         // check to see if the id has been revoked
@@ -42,8 +44,10 @@ function checkRevoke(user) {
             .then(hash => {
                 if(_.isNull(hash)) return user;
 
+                // if the timestamp in redis is after the issue at timestamp in the jwt we're
+                // trying to login with an old jwt, so we should kill it.
                 const timestamp = hash[user._id.toString()];
-                if(timestamp) throw new HttpErrors.HttpUnauthorizedError('jwt revoked');
+                if(jwt.iat < timestamp) throw new HttpErrors.HttpUnauthorizedError('jwt revoked');
 
                 return user;
             });
