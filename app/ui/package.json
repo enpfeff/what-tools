@@ -1,6 +1,10 @@
 {
   "name": "what-tools-ui",
   "version": "0.0.1",
+  "scripts": {
+    "build": "gulp build",
+    "dev": "gulp dev"
+  },
   "dependencies": {
     "angular": "^1.5.8",
     "autoprefixer": "^6.5.1",
@@ -12,5 +16,8 @@
     "vinyl-named": "^1.1.0",
     "webpack": "^1.13.2",
     "webpack-stream": "^3.2.0"
+  },
+  "devDependencies": {
+    "gulp-util": "^3.0.7"
   }
 }
