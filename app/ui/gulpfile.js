@@ -5,6 +5,7 @@
  */
 "use strict";
 const gulp = require('gulp');
+const clean = require('gulp-clean');
 const webpack = require('webpack-stream');
 const gutil = require('gulp-util');
 const PRODUCTION = 'production';
@@ -16,6 +17,9 @@ const tasks = {
         return gulp.src('./app.js')
             .pipe(webpack(config))
             .pipe(gulp.dest('./dist/'))
+    },
+    clean: () => {
+        const CLEAN = ['.']
     }
 };
 
