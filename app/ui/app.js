@@ -7,10 +7,16 @@
 const angular = require('angular');
 const uiRouter = require('angular-ui-router');
 const uiRouterHelper = require('angular-ui-router.statehelper');
+const ngAria = require('angular-aria');
+const ngAnimate = require('angular-animate');
+const ngMaterial = require('angular-material');
 
 const vendor = [
     'ui.router',
-    'ui.router.stateHelper'
+    'ui.router.stateHelper',
+    'ngMaterial',
+    'ngAria',
+    'ngAnimate'
 ];
 
 const modules = [
