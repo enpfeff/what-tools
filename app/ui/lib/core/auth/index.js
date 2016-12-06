@@ -6,7 +6,7 @@ require('./auth.html');
 
 const requires = [];
 
-const app = angular.module('App.Public', requires)
+const app = angular.module('App.Auth', requires)
     .controller('AuthController', require('./auth.controller'));
 
 module.exports = app;

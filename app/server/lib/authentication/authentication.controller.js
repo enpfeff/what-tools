@@ -7,16 +7,11 @@
 
 const User = require('../user/user.model');
 const HttpErrors = require('../httpErrors/httpErrors');
-const bcrypt = require('bcrypt');
 const jwtService = require('./jwt.service');
-const redis = require('../redis/redisClient');
-const moment = require('moment');
 const ObjectID = require('mongodb').ObjectID;
-const C = require('../constant/constant.service')();
-
 const _ = require('lodash');
+const providerFactory = require('./providers/provider.factory');
 const log = require('../log/log');
-const REDIS_REVOKE_KEY = C.REDIS_REVOKE_KEY;
 
  /**
  * first class citizen login route
@@ -50,21 +45,10 @@ function logout(req, res) {
     return User.findOne({_id: new ObjectID(id)})
         .then(user => {
             if(!user) return res.sendStatus(404);
-            return revokeJwt(id)
+            return providerFactory().revoke(id);
         })
         .then(() => res.sendStatus(200));
 
-}
-
-function revokeJwt(id) {
-    return redis().then(db => {
-        return db.hgetall(REDIS_REVOKE_KEY)
-            .then(hash => {
-                if(_.isNull(hash)) hash = {};
-                hash[id] = moment().unix().toString();
-                return db.hmset(REDIS_REVOKE_KEY, hash);
-            });
-    });
 }
 
 /**
