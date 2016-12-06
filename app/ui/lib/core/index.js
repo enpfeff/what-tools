@@ -10,7 +10,8 @@ require('./app.html');
 const requires = [
     'ui.router',
     'ui.router.stateHelper',
-    require('./public').name
+    require('./public').name,
+    require('./auth').name
 ];
 
 module.exports = angular.module('App.Core', requires)

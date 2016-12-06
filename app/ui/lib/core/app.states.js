@@ -7,7 +7,8 @@
 const angular = require('angular');
 
 const childStates = [
-    require('./public/public.states')
+    require('./public/public.states'),
+    require('./auth/auth.states')
 ];
 
 const state = {
