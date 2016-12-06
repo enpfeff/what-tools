@@ -4,11 +4,9 @@
  * @author Ian Pfeffer
  */
 "use strict";
-
-const angular = require('angular');
-const _ = require('lodash');
+require('./app.scss');
 
 const requires = [];
 
-module.exports = angular.module('App', requires)
+module.exports = angular.module('App.Core', requires)
     .controller('AppController', require('./app.controller'));

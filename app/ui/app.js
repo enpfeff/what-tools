@@ -5,17 +5,26 @@
  */
 "use strict";
 const angular = require('angular');
+const uiRouter = require('angular-ui-router');
+const uiRouterHelper = require('angular-ui-router.statehelper');
 
-const requires = [
-    require('./lib/core').name
+const vendor = [
+    'ui.router',
+    'ui.router.stateHelper'
 ];
 
-//
-//  Bootstrap to the Page
-//
-angular.element(document).ready(() => {
-    angular.bootstrap(document, ['App'], {strictDi: true});
-});
+const modules = [
+    require('./lib/core'),
+    require('./lib/home')
+];
 
-module.exports = angular
-    .module('App', requires);
+const app = angular.module('App', _.union(_.map(modules, 'name'), vendor))
+    .config(require('./app.routes'));
+
+angular.element(document).ready(bootstrap);
+
+function bootstrap() {
+    angular.bootstrap(document, ['App'], {strictDi: true});
+}
+
+module.exports = app;

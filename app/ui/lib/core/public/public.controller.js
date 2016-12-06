@@ -1,6 +1,6 @@
 /**
  * @module what-tools
- * @since 10/16/16
+ * @since 12/5/16
  * @author Ian Pfeffer
  */
 "use strict";
@@ -8,9 +8,7 @@
 function controller() {
     'ngInject';
 
-    console.log('App Controller');
-
-    let app = this;
+    let pub = this;
 }
 
 module.exports = controller;
