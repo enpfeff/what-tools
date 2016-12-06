@@ -62,3 +62,5 @@ crashlytics.properties
 crashlytics-build.properties
 fabric.properties
 /app/ui/dist/
+
+.DS_Store

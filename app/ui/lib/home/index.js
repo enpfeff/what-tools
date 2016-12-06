@@ -5,5 +5,7 @@
  */
 "use strict";
 
+require('./home.html');
+
 module.exports = angular.module('App.Home', [])
     .controller('HomeController', require('./home.controller'));

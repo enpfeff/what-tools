@@ -5,5 +5,7 @@
  */
 "use strict";
 
+require('./public.html');
+
 module.exports = angular.module('App.Public', [])
     .controller('PublicController', require('./public.controller'));

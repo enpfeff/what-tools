@@ -8,8 +8,6 @@
 function controller() {
     'ngInject';
 
-    console.log('App Controller');
-
     let app = this;
 }
 

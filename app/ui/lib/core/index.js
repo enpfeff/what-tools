@@ -5,8 +5,14 @@
  */
 "use strict";
 require('./app.scss');
+require('./app.html');
 
-const requires = [];
+const requires = [
+    'ui.router',
+    'ui.router.stateHelper',
+    require('./public').name
+];
 
 module.exports = angular.module('App.Core', requires)
+    .config(require('./app.routes'))
     .controller('AppController', require('./app.controller'));

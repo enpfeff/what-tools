@@ -5,8 +5,6 @@
  */
 "use strict";
 
-require('./home.html');
-
 const state = {
     name: 'home',
     url: '/',

@@ -10,9 +10,7 @@ const states = require('./app.states');
 function routes($locationProvider, $urlRouterProvider, stateHelperProvider) {
     'ngInject';
 
-    // some awesome
-
-    $locationProvider.html5mode(true);
+    $locationProvider.html5Mode(true);
     stateHelperProvider.state(states);
     $urlRouterProvider.otherwise('/');
 }

@@ -18,8 +18,7 @@ const modules = [
     require('./lib/home')
 ];
 
-const app = angular.module('App', _.union(_.map(modules, 'name'), vendor))
-    .config(require('./app.routes'));
+const app = angular.module('App', _.union(_.map(modules, 'name'), vendor));
 
 angular.element(document).ready(bootstrap);
 

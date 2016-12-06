@@ -5,8 +5,6 @@
  */
 "use strict";
 
-require('./public.html');
-
 const childStates = [
     require('../../home/home.states')
 ];

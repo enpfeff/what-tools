@@ -4,11 +4,10 @@
  * @author Ian Pfeffer
  */
 "use strict";
-require('./app.html');
 const angular = require('angular');
 
 const childStates = [
-    require('./lib/core/public/public.states')
+    require('./public/public.states')
 ];
 
 const state = {
