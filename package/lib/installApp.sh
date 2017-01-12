@@ -6,7 +6,7 @@ function installAndStartApp() {
     [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 
     nvm use 6.9.4
-
+    npm config set ignore-scripts false
     npm install pm2
 
     echo -e "Installing WebApp..."

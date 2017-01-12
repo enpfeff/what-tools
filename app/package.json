@@ -4,7 +4,7 @@
   "scripts": {
     "install": "npm-run-all -p install:{server,ui}",
     "install:server": "cd ./server && npm i",
-    "install:ui": "cd ./ui && npm i",
+    "install:ui": "cd ./ui && npm i --unsafe-perm",
     "build": "cd ./ui && npm run build",
     "build:prod": "cd ./ui && UI_ENV=production npm run build",
     "dev": "cd ./ui && npm run dev",
