@@ -19,7 +19,7 @@ function installAndStartApp() {
     npm run build
     cp -r server ${INSTALL_DIR}
     cp -r ui/dist ${INSTALL_DIR}/ui
-    cd {INSTALL_DIR}/server
+    cd ${INSTALL_DIR}/server
     pm2 start ecosystem.config.js
 }
 
