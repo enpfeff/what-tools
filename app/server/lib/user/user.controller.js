@@ -5,7 +5,7 @@
  */
 "use strict";
 
-const bcrypt = require('bcrypt-as-promised');
+const bcrypt = require('bcrypt-nodejs-as-promised');
 const SALT_WORK_FACTOR = 10;
 const log = require('../log/log');
 
