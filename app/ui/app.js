@@ -4,6 +4,7 @@
  * @author Ian Pfeffer
  */
 "use strict";
+
 const angular = require('angular');
 const uiRouter = require('angular-ui-router');
 const uiRouterHelper = require('angular-ui-router.statehelper');
@@ -27,9 +28,8 @@ const modules = [
 const app = angular.module('App', _.union(_.map(modules, 'name'), vendor));
 
 angular.element(document).ready(bootstrap);
+module.exports = app;
 
 function bootstrap() {
     angular.bootstrap(document, ['App'], {strictDi: true});
 }
-
-module.exports = app;

@@ -12,7 +12,7 @@ function kill() {
 
 }
 function killAll() {
-    kill rtorrent
+    echo -e "Killing..."
 }
 
 # =============================

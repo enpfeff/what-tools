@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-WHAT_TOOLS_ADMIN="wtadmin"
-WHAT_TOOLS_GROUP="media"
+WHAT_TOOLS_ADMIN="media"
+WHAT_TOOLS_GROUP="data"
 DEFAULT_PASS="Passwd12!"
 
 function createGroup() {

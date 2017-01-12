@@ -12,7 +12,7 @@ function start() {
 
 }
 function startAll() {
-    start rtorrent
+    echo "starting..."
 }
 
 # =============================
