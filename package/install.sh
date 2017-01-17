@@ -33,7 +33,5 @@ done
 
 su media <<'EOF'
 ./lib/installApp.sh
-EOF
-
-# end of install bring everything up
 ./lib/start.sh
+EOF
