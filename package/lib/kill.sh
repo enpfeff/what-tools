@@ -13,8 +13,11 @@ function kill() {
 }
 function killAll() {
     echo -e "Killing..."
-    cd /opt/what-tools/app/server
-    pm2 delete ecosystem.config.js
+    if [ -d /opt/what-tools/app/server ]; then
+        cd /opt/what-tools/app/server
+        pm2 delete ecosystem.config.js
+    fi
+
 }
 
 # =============================
