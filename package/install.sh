@@ -19,14 +19,15 @@ while getopts ":b" opt; do
     case $opt in
         b)
             echo -e "Installing Base..."
-            ./lib/installBase.sh
+            ./lib/identity.sh
+            sudo -u media ./lib/installBase.sh
             exit 0;
             ;;
     esac
 done
 
 # install what-tools app
-./lib/installApp.sh
+sudo -u media ./lib/installApp.sh
 
 # end of install bring everything up
 ./lib/start.sh
