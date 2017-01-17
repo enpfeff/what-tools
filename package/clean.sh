@@ -15,5 +15,5 @@ cd ../app
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 
-nvm use 6.9.4
-npm run clean
+sudo -u media nvm use 6.9.4
+sudo -u media npm run clean
