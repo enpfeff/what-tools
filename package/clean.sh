@@ -10,9 +10,4 @@ function canWeRun() {
 canWeRun
 
 rm -rf /opt/what-tools/*
-cd ../app
-
-su media <<'EOF'
-source ~/.bashrc
-npm run clean
-EOF
+rm -rf /tmp/app
