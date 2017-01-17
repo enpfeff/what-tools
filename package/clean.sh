@@ -12,7 +12,7 @@ canWeRun
 rm -rf /opt/what-tools
 cd ../app
 
-su media
+su media <<'EOF'
 nvm use 6.9.4
 npm run clean
-exit;
+EOF
