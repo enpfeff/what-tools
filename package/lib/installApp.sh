@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 INSTALL_DIR="/opt/what-tools/app"
 
-function installAndStartApp() {
+function installApp() {
     nvm use 6.9.4
 
     echo -e "Installing WebApp..."
@@ -17,4 +17,4 @@ function installAndStartApp() {
 
 }
 
-installAndStartApp
+installApp
