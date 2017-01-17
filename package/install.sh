@@ -21,10 +21,7 @@ while getopts ":b" opt; do
             echo -e "Installing Base..."
             ./lib/identity.sh
             ./lib/installDirs.sh
-
             sudo -u media ./lib/installBase.sh
-
-            exit 0;
             ;;
     esac
 done

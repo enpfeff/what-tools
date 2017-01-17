@@ -1,10 +1,7 @@
-.PHONY: install
-
-base:
-	(cd package && ./install.sh -b)
+.PHONY: install clean
 
 install:
-	(cd package && ./install.sh)
+	(cd package && ./install.sh -b)
 
 clean:
 	(cd package && ./clean.sh)

@@ -18,11 +18,9 @@ function startAll() {
 }
 
 function startWebApp() {
-    su media
     echo -e "WebApp"
     cd ${INSTALL_DIR}/server
     pm2 start ecosystem.config.js
-
 }
 # =============================
 #   Main
