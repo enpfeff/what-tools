@@ -12,8 +12,7 @@ canWeRun
 rm -rf /opt/what-tools
 cd ../app
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-
-sudo -u media nvm use 6.9.4
-sudo -u media npm run clean
+su media
+nvm use 6.9.4
+npm run clean
+exit;
