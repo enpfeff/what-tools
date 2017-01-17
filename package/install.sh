@@ -21,14 +21,21 @@ while getopts ":b" opt; do
             echo -e "Installing Base..."
             ./lib/identity.sh
             ./lib/installDirs.sh
-            sudo -u media ./lib/installBase.sh
+
+            su media <<'EOF'
+            ./lib/installBase.sh
+            EOF
+
             exit 0;
             ;;
     esac
 done
 
 # install what-tools app
-sudo -u media ./lib/installApp.sh
+
+su media <<'EOF'
+./lib/installApp.sh
+EOF
 
 # end of install bring everything up
 ./lib/start.sh
