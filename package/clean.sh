@@ -13,6 +13,5 @@ rm -rf /opt/what-tools
 cd ../app
 
 su media <<'EOF'
-nvm use 6.9.4
 npm run clean
 EOF
