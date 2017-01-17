@@ -22,9 +22,7 @@ while getopts ":b" opt; do
             ./lib/identity.sh
             ./lib/installDirs.sh
 
-            su media <<'EOF'
-            ./lib/installBase.sh
-            EOF
+            sudo -u media ./lib/installBase.sh
 
             exit 0;
             ;;
