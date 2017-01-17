@@ -2,6 +2,7 @@
 INSTALL_DIR="/opt/what-tools/app"
 
 function installApp() {
+    source ${HOME}/.bashrc
     nvm use 6.9.4
 
     echo -e "Installing WebApp..."
