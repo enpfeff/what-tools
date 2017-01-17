@@ -9,7 +9,7 @@ function canWeRun() {
 
 canWeRun
 
-rm -rf /opt/what-tools
+rm -rf /opt/what-tools/*
 cd ../app
 
 su media <<'EOF'

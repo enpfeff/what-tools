@@ -20,6 +20,7 @@ while getopts ":b" opt; do
         b)
             echo -e "Installing Base..."
             ./lib/identity.sh
+            ./lib/installDirs.sh
             sudo -u media ./lib/installBase.sh
             exit 0;
             ;;

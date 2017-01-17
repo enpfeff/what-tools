@@ -4,7 +4,6 @@ function installBase() {
     echo -e "Installing dependencies..."
     command -v nvm > /dev/null 2>&1 && echo -e "Nvm Installed..." || installNvm
     node -v | grep -i "v6.9.4" &> /dev/null && echo -e "Node Installed..." || installNode
-
 }
 
 function installNvm() {
