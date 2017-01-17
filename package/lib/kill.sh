@@ -15,7 +15,7 @@ function killAll() {
     echo -e "Killing..."
     if [ -d /opt/what-tools/app/server ]; then
         cd /opt/what-tools/app/server
-        pm2 delete ecosystem.config.js
+        command -v pm2 >/dev/null 2>&1 && pm2 delete ecosystem.config.js || echo >&2 "I require foo but it's not installed.  Aborting.";
     fi
 
 }
