@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+INSTALL_DIR="/opt/what-tools/app"
 
 function start() {
     program=$1
@@ -13,8 +14,14 @@ function start() {
 }
 function startAll() {
     echo "starting..."
+    startWebApp
 }
 
+function startWebApp() {
+    echo -e "WebApp"
+    cd ${INSTALL_DIR}/server
+    pm2 start ecosystem.config.js
+}
 # =============================
 #   Main
 # =============================

@@ -21,6 +21,8 @@ function installNode() {
     echo -e "Installing Node via NVM"
     nvm install 6.9.4
     nvm use 6.9.4
+
+    npm i -g pm2 gulp
 }
 
 installBase

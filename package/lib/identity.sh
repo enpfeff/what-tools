@@ -21,6 +21,9 @@ function createUser() {
     if [ $result -ne 0 ]; then
         echo -e "Creating user ${user}\n"
         useradd -p ${pass} -m ${user} -G ${group}
+
+        # make sure we are in the bash shell
+        usermod -s /bin/bash ${user}
     fi
 }
 
