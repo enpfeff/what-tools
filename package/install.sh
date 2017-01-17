@@ -28,7 +28,5 @@ done
 
 # install what-tools app
 
-su media <<'EOF'
-./lib/installApp.sh
-./lib/start.sh
-EOF
+sudo -u media ./lib/installApp.sh
+sudo -u media ./lib/start.sh

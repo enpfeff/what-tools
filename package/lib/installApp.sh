@@ -18,7 +18,6 @@ function installApp() {
     npm run build
     cp -r server ${INSTALL_DIR}
     cp -r ui/dist ${INSTALL_DIR}/ui
-
 }
 
 installApp
