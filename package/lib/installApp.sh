@@ -8,7 +8,10 @@ function installApp() {
     echo -e "Installing WebApp..."
     mkdir -p ${INSTALL_DIR}/ui
 
-    cd ../app
+    echo -e "Copying to tmp"
+    cp -rf ../app /tmp
+    cd /tmp/app
+
     npm install
     npm run install
 
