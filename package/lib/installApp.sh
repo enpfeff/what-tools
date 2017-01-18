@@ -20,4 +20,9 @@ function installApp() {
     cp -rf ui/dist ${INSTALL_DIR}/ui
 }
 
+function cleanUp() {
+    rm -rf /tmp/app
+}
+
 installApp
+cleanUp
