@@ -17,12 +17,18 @@ function installApp() {
 
     npm run build
     cp -rf server ${INSTALL_DIR}
+    cp -rf package.json ${INSTALL_DIR}
     cp -rf ui/dist ${INSTALL_DIR}/ui
+}
+
+function beforeInstall() {
+    rm -rf ${INSTALL_DIR}/*
 }
 
 function cleanUp() {
     rm -rf /tmp/app
 }
 
+beforeInstall
 installApp
 cleanUp
