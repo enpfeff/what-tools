@@ -1,0 +1,82 @@
+##################################################################################################################
+#	Download Config
+##################################################################################################################
+
+max_uploads = 0
+min_peers = 40
+max_peers = 144
+min_peers_seed = -1
+max_peers_seed = -1
+port_range = 55950-56000
+port_random = yes
+trackers.numwant.set = -1
+check_hash = yes
+network.max_open_files.set = 192
+network.http.max_open.set = 32
+scgi_port = 127.0.0.1:5000
+encryption = allow_incoming,try_outgoing,enable_retry
+system.umask.set = 007
+
+
+##################################################################################################################
+#	Logging
+##################################################################################################################
+
+log.open_file = "rtorrent_critical", /opt/rtorrent/log/rtorrent_critical.log
+log.open_file = "rtorrent_debug", /opt/rtorrent/log/rtorrent_debug.log
+log.add_output = "debug", "rtorrent_debug"
+log.add_output = "warn", "rtorrent_debug"
+log.add_output = "error", "rtorrent_critical"
+log.add_output = "critical", "rtorrent_critical"
+
+
+##################################################################################################################
+#	Config
+##################################################################################################################
+
+directory = /opt/rtorrent/incomplete
+session = /opt/rtorrent/session
+upload_rate = 500
+download_rate = 6250
+dht = disable
+
+
+##################################################################################################################
+#	Schedules & Moves
+##################################################################################################################
+
+#	Moses
+schedule = watch_directory_1,10,10,"load.start=/opt/rtorrent/watch/misc/*.torrent,d.custom1.set=/drives/moses/misc"
+schedule = watch_directory_2,10,10,"load.start=/opt/rtorrent/watch/music/*.torrent,d.custom1.set=/drives/moses/unsortedMusic"
+schedule = watch_directory_3,10,10,"load.start=/opt/rtorrent/watch/movie/*.torrent,d.custom1.set=/drives/moses/movie"
+
+#	Eve
+schedule = watch_directory_5,10,10,"load.start=/opt/rtorrent/watch/tv/*.torrent,d.custom1.set=/drives/eve/stagedTv"
+schedule = watch_directory_6,10,10,"load.start=/opt/rtorrent/watch/programs/*.torrent,d.custom1.set=/drives/eve/programs"
+schedule = watch_directory_7,10,10,"load.start=/opt/rtorrent/watch/games/*.torrent,d.custom1.set=/drives/eve/games"
+schedule = watch_directory_8,10,10,"load.start=/opt/rtorrent/watch/ebooks/*.torrent,d.custom1.set=/drives/eve/ebooks"
+schedule = watch_directory_9,10,10,"load.start=/opt/rtorrent/watch/stuff/*.torrent,d.custom1.set=/drives/eve/stuff"
+
+#	move things
+schedule = low_diskspace,5,60,close_low_diskspace=100M
+method.set_key = event.download.finished, rtorrent_move, "d.directory.set=$d.custom1=;execute = /opt/rtorrent/script/processDownloadComplete, $d.base_path=, $d.custom1="
+# method.set_key = event.download.finished, moving, "execute = /opt/rtorrent/script/processDownloadComplete, $d.base_path=, $d.custom1="
+
+##################################################################################################################
+#	Advanced
+##################################################################################################################
+
+system.file.max_size.set = -1
+pieces.preload.type.set = 1
+pieces.preload.min_size.set = 262144
+pieces.preload.min_rate.set = 5120
+network.send_buffer.size.set = 1M
+network.receive_buffer.size.set = 131072
+pieces.sync.always_safe.set = no
+pieces.sync.timeout.set = 600
+pieces.sync.timeout_safe.set = 900
+session.use_lock.set = yes
+session.on_completion.set = yes
+system.file.split_size.set = -1
+system.file.split_suffix.set = .part
+trackers.use_udp.set = yes
