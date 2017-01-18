@@ -15,7 +15,7 @@ module.exports = {
     move: 'false',
 
     // if this is set we'll send completes via prowl
-    PROWL_API_KEY: process.env.PROWL_API_KEY || '',
+    PROWL_API_KEY: process.env.PROWL_API_KEY || '09152be5ee79d2b3b48744635dd8757650c05566',
 
     // How the Tv shows will be moved or symlinked into the tvDestDirectory
     //
