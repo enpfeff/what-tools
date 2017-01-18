@@ -45,9 +45,9 @@ log.add_output = "critical", "rtorrent_critical"
 #	Schedules & Moves
 ##################################################################################################################
 
-schedule = watch_directory_1,10,10,"load.start=/opt/rtorrent/watch/misc/*.torrent,d.custom1.set=/data/home/misc"
-schedule = watch_directory_2,10,10,"load.start=/opt/rtorrent/watch/tv/*.torrent,d.custom1.set=/data/home/stagedTv"
-schedule = watch_directory_3,10,10,"load.start=/opt/rtorrent/watch/movie/*.torrent,d.custom1.set=/data/home/movie"
+schedule = watch_directory_1,10,10,"load.start=/opt/rtorrent/watch/misc/*.torrent,d.custom1.set=/home/data/misc"
+schedule = watch_directory_2,10,10,"load.start=/opt/rtorrent/watch/tv/*.torrent,d.custom1.set=/home/data/stagedTv"
+schedule = watch_directory_3,10,10,"load.start=/opt/rtorrent/watch/movie/*.torrent,d.custom1.set=/home/data/movie"
 
 #	move things
 schedule = low_diskspace,5,60,close_low_diskspace=100M
