@@ -22,5 +22,9 @@
     "then-redis": "^2.0.1",
     "uuid": "^2.0.3",
     "winston": "^2.2.0"
+  },
+  "scripts": {
+    "start": "pm2 start ecosystem.config.js",
+    "kill": "pm2 delete ecosystem.config.js"
   }
 }

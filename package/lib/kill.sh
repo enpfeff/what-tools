@@ -15,7 +15,7 @@ function killAll() {
     echo -e "Killing..."
     if [ -d /opt/what-tools/app/server ]; then
         cd /opt/what-tools/app/server
-        sudo -u media ${HOME}/.nvm/versions/node/v6.9.4/bin/pm2 delete ecosystem.config.js
+        sudo -u media npm run kill
     fi
 
 }
