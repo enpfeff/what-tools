@@ -18,6 +18,7 @@ function startAll() {
 }
 
 function startWebApp() {
+    source ${HOME}/.bashrc
     echo -e "WebApp"
     cd ${INSTALL_DIR}/server
     npm run start
