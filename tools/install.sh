@@ -16,7 +16,12 @@ cp -rf config lib entries bin package.json ${install_dir}
 chmod -R 775 ${install_dir}
 chown -R media:data ${install_dir}
 cd ${install_dir}
-sudo -u media source $HOME/.bashrc && npm install
+
+su media <<'EOF'
+source $HOME/.bashrc
+npm i
+EOF
+
 chmod -R 775 ${install_dir}/node_modules
 
 cp -f ${bin}/plex-updater.sh /usr/bin/plex-updater && chmod 775 /usr/bin/plex-updater
