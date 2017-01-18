@@ -9,6 +9,9 @@ install_dir=/opt/what-tools/tools
 bin=${install_dir}/bin
 cwd=`pwd`
 
+# clean any existing version of this
+rm -rf $install_dir
+
 cd ../tools
 
 mkdir -p ${install_dir}

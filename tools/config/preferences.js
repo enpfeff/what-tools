@@ -3,10 +3,10 @@
  */
 module.exports = {
     // Directory where files are downloaded to
-    tvStagingDirectory: '/drives/eve/stagedTv',
+    tvStagingDirectory: '/data/stagedTv',
 
     // Directory where the files should go
-    tvDestDirectory: '/drives/eve/tv',
+    tvDestDirectory: '/data/tv',
 
     // where should we log use full paths
     loggingFile: '/opt/what-tools/tools/logs/log.txt',
@@ -28,7 +28,7 @@ module.exports = {
 
     plex : {
         //plex url
-        PLEX_URL: '192.168.1.5',
+        PLEX_URL: '127.0.0.1',
         user: '',
         password: ''
     }
