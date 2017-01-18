@@ -15,7 +15,7 @@ function killAll() {
     echo -e "Killing..."
     if [ -d /opt/what-tools/app/server ]; then
         cd /opt/what-tools/app/server
-        command -v pm2 >/dev/null 2>&1 && pm2 delete ecosystem.config.js || echo >&2 "I require foo but it's not installed.  Aborting.";
+        sudo -u media ${NVM_DIR}/versions/node/v6.9.4/bin/pm2 delete ecosystem.config.js
     fi
 
 }

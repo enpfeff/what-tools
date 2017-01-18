@@ -20,7 +20,7 @@ function startAll() {
 function startWebApp() {
     echo -e "WebApp"
     cd ${INSTALL_DIR}/server
-    pm2 start ecosystem.config.js
+    ${NVM_DIR}/versions/node/v6.9.4/bin/pm2 start ecosystem.config.js
 }
 # =============================
 #   Main
