@@ -9,22 +9,35 @@ function canWeRun() {
     fi
 }
 
+function flags() {
+    # check out the flags
+    while getopts ":b" opt; do
+        case $opt in
+            b)
+                echo -e "Installing Base..."
+                ./lib/identity.sh
+                ./lib/installDirs.sh
+                sudo -u media ./lib/installBase.sh
+                ;;
+        esac
+    done
+}
+
+# ================================================================
+#   MAIN
+# ================================================================
+
+# need to be root
 canWeRun
 
-# kills are services that are involved with the install (e.g.) rtorrent
-./lib/kill.sh
+# install things on the flags
+flags
 
-# check out the flags
-while getopts ":b" opt; do
-    case $opt in
-        b)
-            echo -e "Installing Base..."
-            ./lib/identity.sh
-            ./lib/installDirs.sh
-            sudo -u media ./lib/installBase.sh
-            ;;
-    esac
-done
+# kills are services that are involved with the install
+sudo -u media ./lib/kill.sh
 
+# install/upgrades what-tools app
 sudo -u media ./lib/installApp.sh
-./lib/start.sh
+
+# start it back up
+sudo -u media ./lib/start.sh

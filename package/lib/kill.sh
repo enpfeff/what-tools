@@ -1,17 +1,5 @@
 #!/usr/bin/env bash
 
-function kill() {
-    program=$1
-
-    systemctl status ${program}
-    result=$?
-
-    if [ result -eq 0 ]; then
-        systemctl stop ${program}
-    fi
-
-}
-
 function killWebApp() {
     echo -e "WebApp"
     source ${HOME}/.bashrc
@@ -24,7 +12,7 @@ function killWebApp() {
 
 function killAll() {
     echo -e "Killing..."
-    sudo -u media killWebApp
+    killWebApp
 }
 # =============================
 #   Main
