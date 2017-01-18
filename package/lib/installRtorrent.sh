@@ -17,6 +17,9 @@ chown media:data -R $data_home
 chmod 775 -R $data_home
 
 echo -e "Refreshing Rtorrent Config"
-systemctl stop rtorrent
 cp -f ./config/rtorrent.rc $config_home/.rtorrent.rc
-systemctl start rtorrent
+
+su enpfeff <<'EOF'
+screen -X kill -S rtorrent
+screen -dmS rtorrent rtorrent
+EOF
