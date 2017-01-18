@@ -26,7 +26,5 @@ while getopts ":b" opt; do
     esac
 done
 
-# install what-tools app
-
 sudo -u media ./lib/installApp.sh
-sudo -u media ./lib/start.sh
+./lib/start.sh

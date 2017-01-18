@@ -14,12 +14,13 @@ function start() {
 }
 function startAll() {
     echo "starting..."
-    startWebApp
+    sudo -u media startWebApp
 }
 
 function startWebApp() {
-    source ${HOME}/.bashrc
     echo -e "WebApp"
+    source ${HOME}/.bashrc
+    nvm use 6.9.4
     cd ${INSTALL_DIR}/server
     npm run start
 }

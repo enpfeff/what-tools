@@ -13,13 +13,18 @@ function kill() {
 }
 function killAll() {
     echo -e "Killing..."
-    if [ -d /opt/what-tools/app/server ]; then
-        cd /opt/what-tools/app/server
-        sudo -u media npm run kill
-    fi
-
+    sudo -u media killWebApp
 }
 
+function killWebApp() {
+    echo -e "WebApp"
+    source ${HOME}/.bashrc
+    nvm use 6.9.4
+    if [ -d /opt/what-tools/app/server ]; then
+        cd /opt/what-tools/app/server
+        npm run kill
+    fi
+}
 # =============================
 #   Main
 # =============================
