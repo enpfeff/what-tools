@@ -136,10 +136,23 @@ function main() {
  * notifies via an provider, in this case prowl
  */
 function notify() {
-    if (!logger.prowl) return;
+    if (!logger.prowl) logger.info("Prowl is not set up correctly");
 
+    let prowl = logger.prowl;
+    if(_.isUndefined(prowl) && !_.isEmpty(config.PROWL_API_KEY)) {
+        // for some reason the logger didnt create the prowl notifier correctly lets try again
+        prowl = new require('node-prowl')(config.PROWL_API_KEY);
+
+        if(_.isUndefined(prowl)) return logger.info("something is messed up in the prowl department");
+    }
+
+    logger.info("notifying via Prowl");
     let msg = path.basename(srcFile) + ' Successfully Downloaded';
-    logger.prowl.push(msg, 'What', ( error ) => { if( error ) throw error });
+    prowl.push(msg, 'What-Tools', prowlErrorHandler);
+}
+
+function prowlErrorHandler(err) {
+    if(err) throw err;
 }
 
 /**
