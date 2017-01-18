@@ -13,7 +13,6 @@ function installApp() {
     cd /tmp/app
 
     npm install
-    npm run install
 
     npm run build
     cp -rf server ${INSTALL_DIR}

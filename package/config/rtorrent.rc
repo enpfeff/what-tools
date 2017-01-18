@@ -2,7 +2,7 @@
 #	Download Config
 ##################################################################################################################
 
-directory.default.set = /home/enpfeff/torrents/rtorrent
+directory.default.set = /opt/rtorrent/incomplete
 encoding.add = UTF-8
 encryption = allow_incoming,try_outgoing,enable_retry
 execute.nothrow = chmod,777,/home/enpfeff/.config/rpc.socket
@@ -45,7 +45,7 @@ log.add_output = "critical", "rtorrent_critical"
 #	Schedules & Moves
 ##################################################################################################################
 
-schedule = watch_directory_1,10,10,"load.start=/home/enpfeff/rtorrent/watch/misc/*.torrent,d.custom1.set=/data/misc"
+schedule = watch_directory_1,10,10,"load.start=/opt/rtorrent/watch/misc/*.torrent,d.custom1.set=/data/misc"
 schedule = watch_directory_2,10,10,"load.start=/opt/rtorrent/watch/tv/*.torrent,d.custom1.set=/data/stagedTv"
 schedule = watch_directory_3,10,10,"load.start=/opt/rtorrent/watch/movie/*.torrent,d.custom1.set=/data/movie"
 
@@ -70,4 +70,3 @@ session.use_lock.set = yes
 session.on_completion.set = yes
 system.file.split_size.set = -1
 system.file.split_suffix.set = .part
-trackers.use_udp.set = yes
