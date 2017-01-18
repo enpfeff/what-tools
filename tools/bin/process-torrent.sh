@@ -5,7 +5,10 @@ entry=${install_dir}/entries
 
 if [ $# -ge 1 ]; then
     input="$@"
-    node ${entry}/start-process.js ${input}
+su media <<'EOF'
+source ${HOME}/.bashrc
+node ${entry}/start-process.js ${input}
+EOF
 else
     echo "No arguments supplied"
 fi

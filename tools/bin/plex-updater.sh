@@ -5,7 +5,10 @@ entry=${install_dir}/entries
 
 if [ $# -eq 1 ]; then
     type=$1
-    node ${entry}/start-plexUpdater.js ${type}
+su media <<'EOF'
+source ${HOME}/.bashrc
+node ${entry}/start-plexUpdater.js ${type}
+EOF
 else
     echo "Wrong number of arguments"
 fi

@@ -20,6 +20,6 @@ echo -e "Refreshing Rtorrent Config"
 cp -f ./config/rtorrent.rc $config_home/.rtorrent.rc
 
 su enpfeff <<'EOF'
-screen -X kill -S rtorrent
+screen -S rtorrent -X kill
 screen -dmS rtorrent rtorrent
 EOF
