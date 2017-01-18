@@ -5,13 +5,13 @@ if [[ $EUID -ne 0 ]]; then
    exit 1
 fi
 
-install_dir=/opt/what-tools
+install_dir=/opt/what-tools/tools
 bin=${install_dir}/bin
 
 mkdir -p ${install_dir}
 cp -rf config lib entries bin package.json ${install_dir}
 chmod -R 775 ${install_dir}
-chown -R enpfeff:data ${install_dir}
+chown -R media:data ${install_dir}
 cd ${install_dir}
 npm install
 chmod -R 775 ${install_dir}/node_modules

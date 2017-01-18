@@ -9,7 +9,7 @@ module.exports = {
     tvDestDirectory: '/drives/eve/tv',
 
     // where should we log use full paths
-    loggingFile: '/opt/what-tools/logs/log.txt',
+    loggingFile: '/opt/what-tools/tools/logs/log.txt',
 
     // should we symlink - false or move - true
     move: 'false',

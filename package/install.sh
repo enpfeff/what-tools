@@ -39,5 +39,11 @@ sudo -u media ./lib/kill.sh
 # install/upgrades what-tools app
 sudo -u media ./lib/installApp.sh
 
+#installs rtorrent directory structure
+./lib/installRtorrent.sh
+
+#installs what tool binaries
+../tools/install.sh
+
 # start it back up
 sudo -u media ./lib/start.sh

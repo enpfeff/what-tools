@@ -5,7 +5,7 @@ if [[ $EUID -ne 0 ]]; then
    exit 1
 fi
 
-install_dir=/opt/what-tools
+install_dir=/opt/what-tools/tools
 
 rm -rf ${install_dir}
 

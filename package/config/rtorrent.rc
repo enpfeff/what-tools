@@ -2,21 +2,27 @@
 #	Download Config
 ##################################################################################################################
 
-max_uploads = 0
-min_peers = 40
-max_peers = 144
-min_peers_seed = -1
-max_peers_seed = -1
-port_range = 55950-56000
-port_random = yes
-trackers.numwant.set = -1
-check_hash = yes
-network.max_open_files.set = 192
-network.http.max_open.set = 32
-scgi_port = 127.0.0.1:5000
+directory.default.set = /home/enpfeff/torrents/rtorrent
+encoding.add = UTF-8
 encryption = allow_incoming,try_outgoing,enable_retry
-system.umask.set = 007
+execute.nothrow = chmod,777,/home/enpfeff/.config/rpc.socket
+execute.nothrow = chmod,777,/home/enpfeff/.sessions
+network.port_random.set = yes
+network.port_range.set = 47495-48995
+network.scgi.open_port = localhost:47495
+network.tos.set = throughput
+pieces.hash.on_completion.set = no
+protocol.pex.set = no
 
+session.path.set = /home/enpfeff/.sessions/
+throttle.global_down.max_rate.set = 0
+throttle.global_up.max_rate.set = 0
+throttle.max_peers.normal.set = 100
+throttle.max_peers.seed.set = -1
+throttle.max_uploads.global.set = 100
+throttle.min_peers.normal.set = 1
+throttle.min_peers.seed.set = -1
+trackers.use_udp.set = yes
 
 ##################################################################################################################
 #	Logging
@@ -34,33 +40,18 @@ log.add_output = "critical", "rtorrent_critical"
 #	Config
 ##################################################################################################################
 
-directory = /opt/rtorrent/incomplete
-session = /opt/rtorrent/session
-upload_rate = 500
-download_rate = 6250
-dht = disable
-
 
 ##################################################################################################################
 #	Schedules & Moves
 ##################################################################################################################
 
-#	Moses
-schedule = watch_directory_1,10,10,"load.start=/opt/rtorrent/watch/misc/*.torrent,d.custom1.set=/drives/moses/misc"
-schedule = watch_directory_2,10,10,"load.start=/opt/rtorrent/watch/music/*.torrent,d.custom1.set=/drives/moses/unsortedMusic"
-schedule = watch_directory_3,10,10,"load.start=/opt/rtorrent/watch/movie/*.torrent,d.custom1.set=/drives/moses/movie"
-
-#	Eve
-schedule = watch_directory_5,10,10,"load.start=/opt/rtorrent/watch/tv/*.torrent,d.custom1.set=/drives/eve/stagedTv"
-schedule = watch_directory_6,10,10,"load.start=/opt/rtorrent/watch/programs/*.torrent,d.custom1.set=/drives/eve/programs"
-schedule = watch_directory_7,10,10,"load.start=/opt/rtorrent/watch/games/*.torrent,d.custom1.set=/drives/eve/games"
-schedule = watch_directory_8,10,10,"load.start=/opt/rtorrent/watch/ebooks/*.torrent,d.custom1.set=/drives/eve/ebooks"
-schedule = watch_directory_9,10,10,"load.start=/opt/rtorrent/watch/stuff/*.torrent,d.custom1.set=/drives/eve/stuff"
+schedule = watch_directory_1,10,10,"load.start=/home/enpfeff/rtorrent/watch/misc/*.torrent,d.custom1.set=/data/misc"
+schedule = watch_directory_2,10,10,"load.start=/opt/rtorrent/watch/tv/*.torrent,d.custom1.set=/data/stagedTv"
+schedule = watch_directory_3,10,10,"load.start=/opt/rtorrent/watch/movie/*.torrent,d.custom1.set=/data/movie"
 
 #	move things
 schedule = low_diskspace,5,60,close_low_diskspace=100M
-method.set_key = event.download.finished, rtorrent_move, "d.directory.set=$d.custom1=;execute = /opt/rtorrent/script/processDownloadComplete, $d.base_path=, $d.custom1="
-# method.set_key = event.download.finished, moving, "execute = /opt/rtorrent/script/processDownloadComplete, $d.base_path=, $d.custom1="
+method.set_key = event.download.finished, rtorrent_move, "d.directory.set=$d.custom1=;execute = /opt/rtorrent/script/processDownloadComplete.sh, $d.base_path=, $d.custom1="
 
 ##################################################################################################################
 #	Advanced
