@@ -3,10 +3,10 @@
  */
 module.exports = {
     // Directory where files are downloaded to
-    tvStagingDirectory: '/data/stagedTv',
+    tvStagingDirectory: '/home/data/stagedTv',
 
     // Directory where the files should go
-    tvDestDirectory: '/data/tv',
+    tvDestDirectory: '/home/data/tv',
 
     // where should we log use full paths
     loggingFile: '/opt/what-tools/tools/logs/log.txt',
