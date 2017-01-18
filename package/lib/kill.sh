@@ -11,10 +11,6 @@ function kill() {
     fi
 
 }
-function killAll() {
-    echo -e "Killing..."
-    sudo -u media killWebApp
-}
 
 function killWebApp() {
     echo -e "WebApp"
@@ -24,6 +20,11 @@ function killWebApp() {
         cd /opt/what-tools/app/server
         npm run kill
     fi
+}
+
+function killAll() {
+    echo -e "Killing..."
+    sudo -u media killWebApp
 }
 # =============================
 #   Main
