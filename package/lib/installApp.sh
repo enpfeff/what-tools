@@ -25,10 +25,12 @@ function beforeInstall() {
     rm -rf ${INSTALL_DIR}/*
 }
 
-function cleanUp() {
+function postInstall() {
     rm -rf /tmp/app
+    cd ${INSTALL_DIR}
+    npm run bootstrap
 }
 
 beforeInstall
 installApp
-cleanUp
+postInstall

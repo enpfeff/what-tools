@@ -2,7 +2,7 @@
   "name": "what-tools-server",
   "version": "0.0.1",
   "dependencies": {
-    "bcrypt-nodejs-as-promised": "^1.0.4",
+    "bcrypt-as-promised": "1.1.x",
     "bluebird": "^3.4.6",
     "body-parser": "^1.15.2",
     "chalk": "^1.1.3",
