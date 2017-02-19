@@ -141,6 +141,7 @@ function notify() {
     let prowl = logger.prowl;
     if(_.isUndefined(prowl) && !_.isEmpty(config.PROWL_API_KEY)) {
         // for some reason the logger didnt create the prowl notifier correctly lets try again
+        logger.info(`API Key: ${config.PROWL_API_KEY}`);
         prowl = new require('node-prowl')(config.PROWL_API_KEY);
 
         if(_.isUndefined(prowl)) return logger.info("something is messed up in the prowl department");
