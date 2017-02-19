@@ -12,14 +12,6 @@ let staticLogger = null;
 
 init();
 
-const winstonConfig = {
-    transports: [
-        new (winston.transports.Console)(),
-        new (winston.transports.File)({
-            stream: fs.createWriteStream(config.loggingFile, {flags: 'a'})
-        })
-    ]
-};
 
 function init() {
     // create the logging path if not there
@@ -28,7 +20,14 @@ function init() {
     let logger = null;
 
     try {
-        logger = new (winston.Logger)(winstonConfig);
+        logger = new (winston.Logger)({
+            transports: [
+                new (winston.transports.Console)(),
+                new (winston.transports.File)({
+                    stream: fs.createWriteStream(config.loggingFile, {flags: 'a'})
+                })
+            ]
+        });
     } catch(e) {
         console.log("error creating logger", e);
     }
