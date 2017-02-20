@@ -3,7 +3,7 @@
  */
 module.exports = service;
 
-function service($http) {
+function service($http, UserService, $state) {
     'ngInject';
 
     return {
@@ -19,10 +19,12 @@ function service($http) {
                 email: user,
                 password: pass
             }
-        });
+        }).then((res) => res.data);
+
     }
 
-    function logout() {
-
+    function logout(go) {
+        UserService.removeSession();
+        if(go) $state.go('app.public.home');
     }
 }

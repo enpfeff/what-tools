@@ -10,6 +10,7 @@ const uiRouter = require('angular-ui-router');
 const uiRouterHelper = require('angular-ui-router.statehelper');
 const ngAria = require('angular-aria');
 const ngAnimate = require('angular-animate');
+const ngCookies = require('angular-cookies');
 const ngMaterial = require('angular-material');
 
 const vendor = [
@@ -17,12 +18,14 @@ const vendor = [
     'ui.router.stateHelper',
     'ngMaterial',
     'ngAria',
-    'ngAnimate'
+    'ngAnimate',
+    'ngCookies'
 ];
 
 const modules = [
     require('./lib/core'),
-    require('./lib/home')
+    require('./lib/home'),
+    require('./lib/dashboard')
 ];
 
 const app = angular.module('App', _.union(_.map(modules, 'name'), vendor));

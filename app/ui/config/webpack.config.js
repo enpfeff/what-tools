@@ -90,7 +90,7 @@ function productionConfig(config) {
                 warnings: false,
             },
             mangle: {
-                except: ['$super', '$', 'exports', 'require']
+                except: ['_', '$', 'exports', 'require']
             }
         })
     );
