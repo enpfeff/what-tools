@@ -13,8 +13,13 @@ function isTrueParam(x) {
 
 module.exports = {
     PORT: process.env.PORT || 3001,
+    SSL_PORT: process.env.SSL_PORT || 3002,
     COMPRESSION_ENABLED: isTrueParam(process.env.COMPRESSION_ENABLED),
     LOG_LEVEL: process.env.LOG_LEVEL || 'info',
     SSL: isTrueParam(process.env.SSL),
-    URL_PREFIX: process.env.URL_PREFIX || ''
+    URL_PREFIX: process.env.URL_PREFIX || '',
+    SSL_CREDENTIALS: {
+        KEY: './certs/server.key',
+        CERT: './certs/server.crt'
+    }
 };
