@@ -84,6 +84,16 @@ function webpackConfig(prod, watch = false) {
 function productionConfig(config) {
     const OMIT = ['devtool', 'watch', 'output.publicPath'];
 
+    config.plugins.push(
+        new webpack.optimize.UglifyJsPlugin({
+            compress: {
+                warnings: false,
+            },
+            mangle: {
+                except: ['$super', '$', 'exports', 'require']
+            }
+        })
+    );
     return _.omit(config, OMIT);
 }
 
