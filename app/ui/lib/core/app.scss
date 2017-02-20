@@ -11,9 +11,14 @@ html {
     #app {
       height: 100%;
       width: 100%;
-      background: #444;
+      background: rgb(48,48,48);
     }
-  }
 
+    #app-content, #public, #home {
+      height: 100%;
+      width: 100%;
+    }
+
+  }
 }
 

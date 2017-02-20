@@ -8,6 +8,11 @@ const gulp = require('gulp');
 const clean = require('gulp-clean');
 const webpack = require('webpack-stream');
 const gutil = require('gulp-util');
+const concat = require('gulp-concat');
+const minifyCSS = require('gulp-minify-css');
+const autoprefixer = require('gulp-autoprefixer');
+
+const assetConfig = require('./config/assets.config');
 const PRODUCTION = 'production';
 
 const tasks = {
@@ -20,6 +25,13 @@ const tasks = {
     },
     clean: () => {
         const CLEAN = ['.']
+    },
+    css: () => {
+        return gulp.src(assetConfig.CSS)
+            .pipe(autoprefixer('last 2 versions'))
+            .pipe(minifyCSS())
+            .pipe(concat('vendor.min.css'))
+            .pipe(gulp.dest('./dist/'));
     }
 };
 
@@ -36,9 +48,9 @@ function isProd() {
     return isProd;
 }
 
-gulp.task('build', () => tasks.build(false));
-gulp.task('dev', () => tasks.build(true));
 
-gulp.task('default',() => tasks.build(false));
+gulp.task('vendor', () => tasks.css());
+gulp.task('build', ['vendor'], () => tasks.build(false));
+gulp.task('dev', ['vendor'], () => tasks.build(true));
 
-
+gulp.task('default', ['vendor'], () => tasks.build(false));

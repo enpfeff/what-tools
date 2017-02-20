@@ -24,8 +24,10 @@ function init() {
     constantService.add({NODE_ENV});
 
     app.use(logger('dev'));
+    app.use(bodyParser.json({limit: '16mb'}));
+    app.use(bodyParser.raw({type: 'application/octet-stream', limit: '16mb'}));
+    app.use(bodyParser.text({limit: '16mb'}));
     app.use(bodyParser.urlencoded({ extended: true }));
-    app.use(bodyParser.json());
 
     // things that apply to all routes
     if (C.COMPRESSION_ENABLED) app.use(compression());

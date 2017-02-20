@@ -1,1 +1,19 @@
-<div>Hi Boissss</div>
+<div id="home">
+    <div layout="row" style="height: 100%;" layout-align="center center">
+        <form class="signin" ng-submit="home.login()">
+            <md-content class="layout-padding">
+                <div layout="column">
+                    <md-input-container>
+                        <label>User</label>
+                        <input autocomplete="off" type="text" title="username" name="username" ng-model="home.username" md-autofocus>
+                    </md-input-container>
+                    <md-input-container>
+                        <label>Pass</label>
+                        <input autocomplete="off" type="password" title="pass" name="pass" ng-model="home.password">
+                    </md-input-container>
+                    <md-button class="md-raised md-primary" type="submit">Login</md-button>
+                </div>
+            </md-content>
+        </form>
+    </div>
+</div>

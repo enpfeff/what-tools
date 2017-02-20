@@ -5,6 +5,7 @@
  */
 "use strict";
 
+require('./home.scss');
 require('./home.html');
 
 module.exports = angular.module('App.Home', [])

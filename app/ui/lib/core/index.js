@@ -8,6 +8,7 @@ require('./app.scss');
 require('./app.html');
 
 const requires = [
+    'ngMaterial',
     'ui.router',
     'ui.router.stateHelper',
     require('./public').name,
@@ -16,4 +17,5 @@ const requires = [
 
 module.exports = angular.module('App.Core', requires)
     .config(require('./app.routes'))
+    .config(require('./theme'))
     .controller('AppController', require('./app.controller'));
