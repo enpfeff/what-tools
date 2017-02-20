@@ -10,13 +10,14 @@ module.exports = {
         name      : "API",
         script    : "app.js",
         env: {
-          COMMON_VARIABLE: "true",
-          PORT:3000,
-          MONGO_URL:"mongodb://198.100.146.8:27017/what-tools",
-          COMPRESSION_ENABLED:true
+            PORT: 3000,
+            MONGO_URL: "mongodb://198.100.146.8:27017/what-tools",
+            COMPRESSION_ENABLED: true,
+            SSL_PORT: 3001,
+            SSL: true
         },
         env_production : {
-        NODE_ENV: "production"
+            NODE_ENV: "production"
         },
         "error_file" : "./log/child-err.log",
         "out_file"   : "./log/child-out.log",
