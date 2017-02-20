@@ -12,8 +12,8 @@ function isTrueParam(x) {
 }
 
 module.exports = {
-    PORT: process.env.PORT || 3001,
-    SSL_PORT: process.env.SSL_PORT || 3002,
+    PORT: process.env.PORT || 3000,
+    SSL_PORT: process.env.SSL_PORT || 3001,
     COMPRESSION_ENABLED: isTrueParam(process.env.COMPRESSION_ENABLED),
     LOG_LEVEL: process.env.LOG_LEVEL || 'info',
     SSL: isTrueParam(process.env.SSL),

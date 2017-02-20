@@ -12,6 +12,8 @@ const ngAria = require('angular-aria');
 const ngAnimate = require('angular-animate');
 const ngCookies = require('angular-cookies');
 const ngMaterial = require('angular-material');
+const environment = require('env');
+const DEVELOPMENT = 'development';
 
 const vendor = [
     'ui.router',
@@ -28,7 +30,8 @@ const modules = [
     require('./lib/dashboard')
 ];
 
-const app = angular.module('App', _.union(_.map(modules, 'name'), vendor));
+const app = angular.module('App', _.union(_.map(modules, 'name'), vendor))
+    .config(($logProvider) => $logProvider.debugEnabled(environment.env === DEVELOPMENT));
 
 angular.element(document).ready(bootstrap);
 module.exports = app;

@@ -16,8 +16,9 @@ const postcssLoader = require('postcss-loader');
 const exportsLoader = require('exports-loader');
 const autoPrefixer = require('autoprefixer');
 const jsonImporter = require('node-sass-json-importer');
+const path = require('path');
 
-function webpackConfig(prod, watch = false) {
+function webpackConfig(prod = false, watch = false) {
 
 
     let config = {
@@ -33,6 +34,12 @@ function webpackConfig(prod, watch = false) {
             publicPath: 'http://localhost:3001/'
         },
         watch: watch,
+
+        resolve: {
+            alias: {
+                env: path.join(__dirname, prod ? 'production.js' : 'development.js')
+            }
+        },
 
         module: {
 
