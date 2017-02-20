@@ -14,7 +14,6 @@ function installApp() {
 
     npm install
 
-    npm run bootstrap
     npm run build
     cp -rf server ${INSTALL_DIR}
     cp -rf package.json ${INSTALL_DIR}

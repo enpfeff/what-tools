@@ -24,7 +24,7 @@
     "winston": "^2.2.0"
   },
   "scripts": {
-    "start": "pm2 start ecosystem.config.js",
+    "start": "pm2 start ecosystem.config.js --env production",
     "kill": "pm2 delete ecosystem.config.js"
   }
 }
