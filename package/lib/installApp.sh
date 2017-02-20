@@ -14,6 +14,7 @@ function installApp() {
 
     npm install
 
+    export UI_ENV=production
     npm run build
     cp -rf server ${INSTALL_DIR}
     cp -rf package.json ${INSTALL_DIR}
