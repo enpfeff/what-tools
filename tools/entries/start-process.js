@@ -30,12 +30,13 @@ const logger = log.getLogger();
 const tv = (!((args.m) || (args.movie)));
 const movie = ((args.m) || (args.movie));
 
-
+module.exports = {
+    notify
+};
 
 // ------------------------------------------------------------------------
 // Main
 // ------------------------------------------------------------------------
-
 return main()
     .then(processTorrent)
     .then(updatePlex)
@@ -44,6 +45,7 @@ return main()
         logger.error(obj.msg);
         return process.exit(obj.code);
     });
+
 
 // ------------------------------------------------------------------------
 // Private Functions
@@ -68,6 +70,8 @@ function processTorrent() {
         const fileObject = parser.parse(path.basename(srcFile));
         return processTv(fileObject);
     }
+
+    return srcFile;
 }
 
 /**
@@ -89,6 +93,8 @@ function processTv(fileObject) {
     if (!success) throw new Error({ msg: "Error creating the symlink", code: 1});
 
     logger.info('symlink created: ' + config.tvDestDirectory + directoryStructure);
+
+    return fileObject.fileName;
 }
 
 /**
@@ -106,6 +112,8 @@ function processSeason(fileObject) {
     // for each file in the season create the symlink
     _.each(list, (file) => commands.symlink(fileObject.fileName + '/' + file,
         config.tvDestDirectory + directoryStructureSeason + '/' + file));
+
+    return fileObject.fileName;
 }
 
 /**
@@ -135,7 +143,7 @@ function main() {
 /**
  * notifies via an provider, in this case prowl
  */
-function notify() {
+function notify(srcFile) {
     if (!logger.prowl) logger.info("Prowl is not set up correctly");
 
     let prowl = logger.prowl;
@@ -145,15 +153,16 @@ function notify() {
         const Prowl = require('node-prowl');
         prowl = new Prowl(config.PROWL_API_KEY);
 
-        if(_.isUndefined(prowl)) {
-            logger.error(prowl);
-            return logger.info("something is messed up in the prowl department");
-        }
+        if(_.isUndefined(prowl)) return logger.info("something is messed up in the prowl department");
     }
 
     logger.info("notifying via Prowl");
     let msg = path.basename(srcFile) + ' Successfully Downloaded';
-    prowl.push(msg, 'What-Tools', prowlErrorHandler);
+
+    prowl.push(msg, 'What-Tools', {}, (err, remaining) => {
+        if(err) prowlErrorHandler(err);
+        return logger.info(`remaining prowls: ${remaining}`);
+    });
 }
 
 function prowlErrorHandler(err) {
@@ -165,7 +174,8 @@ function prowlErrorHandler(err) {
  * updates the plex libraries when something new has been added
  * @returns {Promise.<TResult>}
  */
-function updatePlex() {
+function updatePlex(srcFile) {
     return plex.findLibraries(tv ? 'show' : 'movie')
-        .then((directories) => plex.refreshLibraries(_.map(directories, 'key')));
+        .then((directories) => plex.refreshLibraries(_.map(directories, 'key')))
+        .then(() => srcFile);
 }

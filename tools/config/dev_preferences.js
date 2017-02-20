@@ -3,25 +3,19 @@
  */
 module.exports = {
     // Directory where files are downloaded to
-    tvStagingDirectory: '/Users/ianpfeffer/Workspaces/Mess/what-tools/out/stage',
+    tvStagingDirectory: '/Users/enpfeff/code/what-tools/out/stage',
 
     // Directory where the files should go
-    tvDestDirectory: '/Users/ianpfeffer/Workspaces/Mess/what-tools/out/dest',
+    tvDestDirectory: '/Users/enpfeff/code/what-tools/out/dest',
 
     // where should we log use full paths
-    loggingFile: '/Users/ianpfeffer/Workspaces/Mess/what-tools/out/log.txt',
+    loggingFile: '/Users/enpfeff/code/what-tools/out/log.txt',
 
     // should we symlink - false or move - true
     move: 'false',
 
     // if this is set we'll send completes via prowl
-    PROWL_API_KEY: process.env.PROWL_API_KEY || '',
-    LOGGLY_OPTIONS: {
-        token: process.env.LOGGLY_KEY || '',
-        subdomain: "enpfeff",
-        tags: ["what-tools"],
-        json:true
-    },
+    PROWL_API_KEY: process.env.PROWL_API_KEY || '09152be5ee79d2b3b48744635dd8757650c05566',
 
     // How the Tv shows will be moved or symlinked into the tvDestDirectory
     //
