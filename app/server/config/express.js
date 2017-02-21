@@ -12,8 +12,12 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const compression = require('compression');
 const logger = require('morgan');
+const expressCdn = require('express-cdn');
 const constantService = require('../lib/constant/constant.service');
 const routes = require('../lib/app.routes');
+
+const UI_DIST = path.normalize(__dirname + '/../../ui/dist');
+const VIEWS_DIR = path.normalize(__dirname + '/../views');
 
 function init() {
     let app = express();
@@ -29,6 +33,9 @@ function init() {
     app.use(bodyParser.text({limit: '16mb'}));
     app.use(bodyParser.urlencoded({ extended: true }));
 
+    const CDN = expressCdn(app, cdnOptions(false, C));
+    app.locals.CDN = CDN();
+
     // things that apply to all routes
     if (C.COMPRESSION_ENABLED) app.use(compression());
     app.use(allowCrossDomain);
@@ -36,10 +43,10 @@ function init() {
 
     // view engine setup
     app.set('view engine', 'ejs');
-    app.set('views', path.normalize(__dirname + '/../views'));
+    app.set('views', VIEWS_DIR);
 
     // Serve up the UI's Assets so we can go get them
-    app.use(express.static(path.normalize(__dirname + '/../../ui/dist')));
+    app.use(express.static(UI_DIST));
 
     app.use(routes());
 
@@ -54,6 +61,24 @@ function determineNodeEnv() {
     }
 
     return NODE_ENV;
+}
+
+function cdnOptions(isProd = false, C) {
+    const options = {
+        publicDir: UI_DIST,
+        viewsDir: VIEWS_DIR,
+        domain: 'cdn.your-domain.com',
+        bucket: 'bucket-name',
+        endpoint: 'bucket-name.s3.amazonaws.com', // optional
+        key: 'amazon-s3-key',
+        secret: 'amazon-s3-secret',
+        hostname: 'localhost',
+        port: C.SSL ? C.SSL_PORT : C.PORT,
+        ssl: C.SSL,
+        production: isProd
+    };
+
+    return options;
 }
 
 function noCache(req, res, next) {

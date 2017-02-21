@@ -18,7 +18,7 @@ const autoPrefixer = require('autoprefixer');
 const jsonImporter = require('node-sass-json-importer');
 const path = require('path');
 
-function webpackConfig(prod = false, watch = false) {
+function webpackConfig(prod = false, manifest) {
 
 
     let config = {
@@ -29,11 +29,14 @@ function webpackConfig(prod = false, watch = false) {
         stats: {
             colors: true,
         },
+        entry: {
+            app: './app.js'
+        },
         output: {
+            path: path.resolve('./dist'),
             filename: 'bundle.js',
             publicPath: 'http://localhost:3001/'
         },
-        watch: watch,
 
         resolve: {
             alias: {
@@ -62,6 +65,11 @@ function webpackConfig(prod = false, watch = false) {
         },
 
         plugins: [
+            // this links all the vendor code
+            new webpack.DllReferencePlugin({
+                context: '.',
+                manifest: require(manifest)
+            }),
             // Sets global variables
             new webpack.ProvidePlugin({
                 _: 'lodash',

@@ -6,25 +6,38 @@
 "use strict";
 const gulp = require('gulp');
 const clean = require('gulp-clean');
-const webpack = require('webpack-stream');
+const webpackGulp = require('webpack-stream');
 const gutil = require('gulp-util');
 const concat = require('gulp-concat');
+const webpack = require('webpack');
 const minifyCSS = require('gulp-minify-css');
 const autoprefixer = require('gulp-autoprefixer');
+const livereload = require('gulp-livereload');
+const libraryConfig = require('./config/library.webpack.config');
 
 const assetConfig = require('./config/assets.config');
 const PRODUCTION = 'production';
 
 const tasks = {
-    build: (watch) => {
-        const config = getConfig(isProd(), watch);
+    vendor: (done) => {
+        webpack(libraryConfig(isProd()), function (err, stats) {
+            if (err) throw new gutil.PluginError("webpack", err);
+            gutil.log("[webpack]", stats.toString({}));
+            done();
+        });
+    },
+    build: () => {
+        const config = getConfig(isProd(), '../dist/vendor-manifest.json');
 
         return gulp.src('./app.js')
-            .pipe(webpack(config))
+            .pipe(webpackGulp(config))
             .pipe(gulp.dest('./dist/'))
     },
     clean: () => {
-        const CLEAN = ['.']
+        const CLEAN = ['./dist'];
+        return gulp.src(CLEAN, {read: false})
+            .pipe(clean());
+
     },
     css: () => {
         return gulp.src(assetConfig.CSS)
@@ -48,9 +61,13 @@ function isProd() {
     return isProd;
 }
 
+// used in both development and production builds
+gulp.task('clean', tasks.clean);
+gulp.task('vendor', ['clean'], (done) => {
+    tasks.css();
+    tasks.vendor(() => done());
+});
 
-gulp.task('vendor', () => tasks.css());
-gulp.task('build', ['vendor'], () => tasks.build(false));
-gulp.task('dev', ['vendor'], () => tasks.build(true));
-
-gulp.task('default', ['vendor'], () => tasks.build(false));
+// only used in prod build
+gulp.task('build', ['vendor', 'clean'], tasks.build);
+gulp.task('default', ['build']);

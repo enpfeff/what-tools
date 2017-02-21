@@ -3,7 +3,9 @@
   "version": "0.0.1",
   "scripts": {
     "build": "gulp build",
-    "dev": "gulp dev"
+    "dev": "npm-run-all -s vendor dev:webpack",
+    "vendor": "gulp vendor",
+    "dev:webpack": "webpack --watch --config config/app.webpack-livereload.js"
   },
   "dependencies": {
     "angular": "^1.5.8",
@@ -13,9 +15,7 @@
     "angular-material": "^1.1.1",
     "angular-ui-router": "^0.3.2",
     "angular-ui-router.statehelper": "^1.3.1",
-    "gulp-autoprefixer": "^3.1.1",
-    "gulp-concat": "^2.6.1",
-    "gulp-minify-css": "^1.2.4"
+    "npm-run-all": "^4.0.1"
   },
   "devDependencies": {
     "autoprefixer": "^6.5.3",
@@ -25,7 +25,11 @@
     "css-loader": "^0.26.1",
     "exports-loader": "^0.6.3",
     "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^3.1.1",
     "gulp-clean": "^0.3.2",
+    "gulp-concat": "^2.6.1",
+    "gulp-livereload": "^3.8.1",
+    "gulp-minify-css": "^1.2.4",
     "gulp-util": "^3.0.7",
     "ng-annotate-loader": "^0.2.0",
     "ng-cache-loader": "0.0.21",
@@ -36,7 +40,8 @@
     "sass-loader": "^4.0.2",
     "style-loader": "^0.13.1",
     "vinyl-named": "^1.1.0",
-    "webpack": "^1.13.2",
+    "webpack": "^1.14.0",
+    "webpack-livereload-plugin": "^0.10.0",
     "webpack-stream": "^3.2.0"
   }
 }

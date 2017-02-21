@@ -4,12 +4,13 @@
         <meta charset="UTF-8">
         <title>App</title>
         <base href="/">
-        <link href="/vendor.min.css" rel="stylesheet">
+        <%- CDN('/vendor.min.css') %>
         <!-- TODO: load these from the server perhaps? -->
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     </head>
     <body>
         <div id="app" ui-view></div>
-        <script src="/bundle.js" type="application/javascript"></script>
+        <%- CDN('/vendor.bundle.js') %>
+        <%- CDN('/bundle.js') %>
     </body>
 </html>
