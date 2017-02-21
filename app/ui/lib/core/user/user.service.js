@@ -37,7 +37,7 @@ function userService($cookies, $q, $log) {
             if(_.isUndefined(object)) return reject();
 
             if(!_.isUndefined(object.jwt) && !_.isUndefined(object.user)) {
-                createSession(user, jwt);
+                createSession(object.user, object.jwt);
                 return resolve(true);
             }
 
