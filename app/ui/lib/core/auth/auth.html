@@ -1,1 +1,40 @@
-<div id="auth" ui-view></div>
+<div id="auth" layout="column">
+    <md-toolbar md-whiteframe="6"layout="row">
+        <div class="md-toolbar-tools">
+            <h1 class="md-toolbar-tools">What Tools</h1>
+            <md-menu md-offset="0 0" md-position-mode="target-right target">
+                <md-button ng-click="dash.openMenu($mdMenu, $event)" class="md-icon-button">
+                    <md-icon md-menu-origin>account_circle</md-icon>
+                </md-button>
+                <md-menu-content width="4">
+                    <md-menu-item>
+                        <md-button ng-click="">
+                            <div layout="row" flex>
+                                <md-icon md-menu-align-target>assignment_ind</md-icon>
+                                <p flex>Profile</p>
+                            </div>
+                        </md-button>
+                    </md-menu-item>
+                    <md-menu-divider></md-menu-divider>
+                    <md-menu-item>
+                        <md-button ng-click="">
+                            <div layout="row" flex>
+                                <md-icon md-menu-align-target>lock</md-icon>
+                                <p flex>Logout</p>
+                            </div>
+                        </md-button>
+                    </md-menu-item>
+                </md-menu-content>
+            </md-menu>
+
+        </div>
+    </md-toolbar>
+    <section layout="row" flex>
+        <md-sidenav class="md-sidenav-left" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')" md-disable-backdrop="" md-whiteframe="6">
+            <md-content layout-padding="">
+
+            </md-content>
+        </md-sidenav>
+        <div ui-view flex></div>
+    </section>
+</div>
