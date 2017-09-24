@@ -44,7 +44,7 @@ schedule = socket_chmod,0,0,"execute=chmod,0660,/run/php/.rtorrent.sock"
 schedule = socket_chgrp,0,0,"execute=chgrp,abc,/run/php/.rtorrent.sock"
 
 schedule = watch_directory_1,10,10,"load.start=/downloads/watch/misc/*.torrent,d.custom1.set=/downloads/misc"
-schedule = watch_directory_2,10,10,"load.start=/downloads/watch/tv/*.torrent,d.custom1.set=/downloads/stagedTv"
+schedule = watch_directory_2,10,10,"load.start=/downloads/watch/tv/*.torrent,d.custom1.set=/downloads/tv"
 schedule = watch_directory_3,10,10,"load.start=/downloads/watch/movie/*.torrent,d.custom1.set=/downloads/movie"
 
 #	move things
