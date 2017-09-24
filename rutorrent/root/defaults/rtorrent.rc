@@ -1,0 +1,75 @@
+execute = {sh,-c,/usr/bin/php7 /usr/share/webapps/rutorrent/php/initplugins.php abc &}
+execute.nothrow = rm,/run/php/.rtorrent.sock
+network.scgi.open_local = /run/php/.rtorrent.sock
+check_hash = yes
+
+##################################################################################################################
+#	Download Config
+##################################################################################################################
+
+directory.default.set = /downloads/incoming
+encoding.add = UTF-8
+encryption = allow_incoming,try_outgoing,enable_retry
+network.tos.set = throughput
+pieces.hash.on_completion.set = no
+protocol.pex.set = no
+
+session = /config/rtorrent/rtorrent_sess
+throttle.global_down.max_rate.set = 0
+throttle.global_up.max_rate.set = 0
+throttle.max_peers.normal.set = 100
+throttle.max_peers.seed.set = -1
+throttle.max_uploads.global.set = 100
+throttle.min_peers.normal.set = 1
+throttle.min_peers.seed.set = -1
+dht = auto
+dht_port = 6881
+peer_exchange = yes
+trackers.use_udp.set = yes
+bind = 0.0.0.0
+port_range = 51413-51413
+
+
+##################################################################################################################
+#	Config
+##################################################################################################################
+log.open_file = "rtorrent", /config/log/rtorrent/rtorrent.log
+log.add_output = "info", "rtorrent"
+
+##################################################################################################################
+#	Schedules & Moves
+##################################################################################################################
+
+schedule = socket_chmod,0,0,"execute=chmod,0660,/run/php/.rtorrent.sock"
+schedule = socket_chgrp,0,0,"execute=chgrp,abc,/run/php/.rtorrent.sock"
+
+schedule = watch_directory_1,10,10,"load.start=/downloads/watch/misc/*.torrent,d.custom1.set=/downloads/misc"
+schedule = watch_directory_2,10,10,"load.start=/downloads/watch/tv/*.torrent,d.custom1.set=/downloads/stagedTv"
+schedule = watch_directory_3,10,10,"load.start=/downloads/watch/movie/*.torrent,d.custom1.set=/downloads/movie"
+
+#	move things
+schedule = low_diskspace,5,60,close_low_diskspace=100M
+
+method.insert = d.get_data_full_path, simple, "branch=((d.is_multi_file)),((cat,(d.directory))),((cat,(d.directory),/,(d.name)))"
+method.insert = d.move_to_complete, simple, "d.directory.set=$argument.1=; execute=mkdir,-p,$argument.1=; execute=mv,-u,$argument.0=,$argument.1=; execute=/usr/bin/notify.sh,$d.custom1=; d.save_full_session="
+method.set_key = event.download.finished,move_complete,"d.move_to_complete=$d.get_data_full_path=,$d.custom1="
+
+# method.set_key = event.download.finished, rtorrent_move, "d.directory.set=$d.custom1=;execute = /opt/rtorrent/script/processDownloadComplete.sh, $d.base_path=, $d.custom1="
+
+##################################################################################################################
+#	Advanced
+##################################################################################################################
+
+system.file.max_size.set = -1
+pieces.preload.type.set = 1
+pieces.preload.min_size.set = 262144
+pieces.preload.min_rate.set = 5120
+network.send_buffer.size.set = 1M
+network.receive_buffer.size.set = 131072
+pieces.sync.always_safe.set = no
+pieces.sync.timeout.set = 600
+pieces.sync.timeout_safe.set = 900
+session.use_lock.set = yes
+session.on_completion.set = yes
+system.file.split_size.set = -1
+system.file.split_suffix.set = .part

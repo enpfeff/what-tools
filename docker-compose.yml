@@ -14,7 +14,7 @@ services:
       - /home/media/data:/data
   rtorrent:
     container_name: rtorrent
-    image: linuxserver/rutorrent
+    image: enpfeff/rutorrent
     restart: unless-stopped
     environment:
       - PGID=1000
@@ -22,7 +22,7 @@ services:
       - TZ=America/Toronto
     volumes:
       - /home/media/rtorrent:/config
-      - /home/media/data/downloads:/downloads
+      - /home/media/data:/downloads
     dns: 8.8.8.8
     ports:
       - 8080:80
