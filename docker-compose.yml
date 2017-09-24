@@ -9,8 +9,8 @@ services:
       - PLEX_CLAIM=claim-jbB9rWsMVeh1xsrG97UB
     network_mode: host
     volumes:
-      - /home/media/data/plex/config:/config
-      - /home/media/data/plex/transcode:/transcode
+      - /home/media/plex/config:/config
+      - /home/media/plex/transcode:/transcode
       - /home/media/data:/data
   rtorrent:
     container_name: rtorrent
@@ -29,3 +29,33 @@ services:
       - 51413:51413
       - 5000:5000
       - 6881:6881/udp
+  sonarr:
+    container_name: sonarr
+    image: linuxserver/sonarr
+    restart: unless-stopped
+    environment:
+      - PUID=1001
+      - PGIG=1000
+      - TZ=America/Toronto
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /home/media/sonarr:/config
+      - /home/media/data/tv:/tv
+      - /home/media/data/watch:/downloads
+    ports:
+      - 8989:8989
+  radarr:
+    container_name: radarr
+    image: linuxserver/radarr
+    restart: unless-stopped
+    environment:
+      - PUID=1001
+      - PGIG=1000
+      - TZ=America/Toronto
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /home/media/radarr:/config
+      - /home/media/data/movie:/movies
+      - /home/media/data/watch:/downloads
+    ports:
+      - 7878:7878
