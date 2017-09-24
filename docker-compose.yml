@@ -22,6 +22,6 @@ services:
       - /home/media/rtorrent:/rtorrent
     dns: 8.8.8.8
     ports:
-      - 80:80
+      - 8080:80
       - 45566:45566 
       - 9527:9527/udp
