@@ -40,7 +40,7 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /home/media/sonarr:/config
-      - /home/media/data/tv:/tv
+      - /home/media/data:/tv
       - /home/media/data/watch:/downloads
     ports:
       - 8989:8989
@@ -55,7 +55,7 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /home/media/radarr:/config
-      - /home/media/data/movie:/movies
+      - /home/media/data:/movies
       - /home/media/data/watch:/downloads
     ports:
       - 7878:7878
