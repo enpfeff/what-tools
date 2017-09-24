@@ -14,14 +14,18 @@ services:
       - /home/media/data:/data
   rtorrent:
     container_name: rtorrent
-    image: kfei/docktorrent
+    image: linuxserver/rutorrent
     restart: unless-stopped
-    environment: 
-      - UPLOAD_RATE=0
+    environment:
+      - PGID=1000
+      - PUID=1001
+      - TZ=America/Toronto
     volumes:
-      - /home/media/rtorrent:/rtorrent
+      - /home/media/rtorrent:/config
+      - /home/media/data/downloads:/downloads
     dns: 8.8.8.8
     ports:
       - 8080:80
-      - 45566:45566 
-      - 9527:9527/udp
+      - 51413:51413
+      - 5000:5000
+      - 6881:6881/udp
