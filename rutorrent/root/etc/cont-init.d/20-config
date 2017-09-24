@@ -5,7 +5,7 @@ mkdir -p \
 	/config{/log/nginx,/log/rtorrent,/log/rutorrent,/nginx,/php,/rtorrent/rtorrent_sess,/rutorrent/settings/users} \
 	/config/rutorrent/profiles{/settings,/torrents,/users,/tmp} \
 	/downloads{/completed,/incoming,/watch} \
-	/downloads/watch{/movie,/tv,/misc}
+	/downloads/watch{/movie,/tv,/misc} \
 	/run{/nginx,/php} \
 	/var/lib/nginx/tmp/client_body \
 	/var/tmp/nginx
@@ -49,7 +49,7 @@ cp /config/php/php.ini /etc/php7/php.ini
 # permissions
 chown abc:abc \
 	/downloads \
-	/downloads{/completed,/incoming,/watch}
+	/downloads{/completed,/incoming,/watch} \
 	/downloads/watch{/movie,/misc,/tv}
 
 chown -R abc:abc \
