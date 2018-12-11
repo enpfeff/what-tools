@@ -11,7 +11,7 @@ USER_AGENT="enpfeff/${API_CLIENT_VERSION}"
 ###########
 # Define default attributes
 #
-PROWL_API_KEY="09152be5ee79d2b3b48744635dd8757650c05566"
+PROWL_API_KEY=""
 APPLICATION="`hostname`"
 PRIORITY="1"
 EVENT=""

@@ -9,9 +9,9 @@ services:
       - PLEX_CLAIM=claim-jbB9rWsMVeh1xsrG97UB
     network_mode: host
     volumes:
-      - /home/media/plex/config:/config
-      - /home/media/plex/transcode:/transcode
-      - /home/media/data:/data
+      - /home/enpfeff/config/plex:/config
+      - /home/enpfeff/config/plex/transcode:/transcode
+      - /data:/data
   rtorrent:
     container_name: rtorrent
     image: enpfeff/rutorrent
@@ -21,12 +21,12 @@ services:
       - PUID=1001
       - TZ=America/Toronto
     volumes:
-      - /home/media/rtorrent:/config
-      - /home/media/data:/downloads
+      - /home/enpfeff/config/rtorrent:/config
+      - /data:/downloads
     dns: 8.8.8.8
     ports:
       - 8080:80
-      - 51413:51413
+      - 55950:55950
       - 5000:5000
       - 6881:6881/udp
   sonarr:
@@ -39,9 +39,9 @@ services:
       - TZ=America/Toronto
     volumes:
       - /etc/localtime:/etc/localtime:ro
-      - /home/media/sonarr:/config
-      - /home/media/data:/tv
-      - /home/media/data/watch:/downloads
+      - /home/enpfeff/config/sonarr:/config
+      - /data:/tv
+      - /data/watch:/downloads
     ports:
       - 8989:8989
   radarr:
@@ -54,8 +54,8 @@ services:
       - TZ=America/Toronto
     volumes:
       - /etc/localtime:/etc/localtime:ro
-      - /home/media/radarr:/config
-      - /home/media/data:/movies
-      - /home/media/data/watch:/downloads
+      - /home/enpfeff/config/radarr:/config
+      - /data:/movies
+      - /data/watch:/downloads
     ports:
       - 7878:7878
